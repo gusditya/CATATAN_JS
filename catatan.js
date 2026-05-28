@@ -432,6 +432,194 @@ function rollbutton() {
 }
 
 
-//RANDOM PASSWORD GENERATOR
+//forEach
+let number = [1, 2, 3, 4, 5];
+number.forEach(display);
 
+function double(element, array, index) {
+    array[index] = element * 2;
+}
+
+function triple(element, array, index) {
+    array[index] = element * 3;
+}
+
+function square(element, array, index) {
+    array[index] = Math.pow(element, 2);
+}
+
+function display(element) {
+    console.log(element);
+}
+
+
+//map() => membuat array baru dengan memodifikasi setiap elemen dari array lama
+const numbers = [1, 2, 3, 4, 5];
+console.log(numbers.map(double)); // --> [1, 4, 9, 16, 25]
+
+function double(element) {
+    return Math.pow(element, 2);
+}
+
+//--------------------------------
+
+const date = ["2024-01-10", "2024-02-14", "2024-03-17"];
+console.log(date.map(formatDate));
+
+function formatDate(element) {
+    const parts = element.split("-");
+    return `${parts[1]}/${parts[2]}/${parts[0]}`;
+}
+
+
+// filter() => membuat array baru dengan memfilter elemen dari array lama berdasarkan kondisi tertentu
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+console.log(numbers.filter(isEven)); // --> [2, 4, 6, 8, 10]
+
+function isEven(element) {
+    return element % 2 === 0;
+}
+
+
+//reduce() => mengurangi array menjadi satu nilai berdasarkan fungsi yang diberikan
+const numbers = [6, 21, 12, 30, 20];
+console.log(`$${numbers.reduce(sum)}`); // --> $89
+
+function sum(total, element) {
+    return total + element;
+}
+
+
+//arrow function => fungsi yang lebih singkat dan mudah dibaca
+const add = (num1, num2) => num1 + num2;
+console.log(add(5, 10)); // --> 15
+
+//-------------------------------
+const numbers = [1, 2, 3, 4, 5];
+const squaredNumbers = numbers.map(num => num * num);
+console.log(squaredNumbers); // --> [1, 4, 9, 16, 25]
+
+
+//object => kumpulan data yang memiliki properti dan nilai
+const person1 = {
+    firstName: "John",
+    lastName: "Doe",
+    age: 30,
+    hello: function () { console.log('Hi! I am ' + this.firstName) },
+    fullName: function () { return this.firstName + " " + this.lastName }
+};
+
+const person2 = {
+    firstName: "Jane",
+    lastName: "Smith",
+    age: 25,
+    hello: function () { console.log('Hi! I am ' + this.firstName) },
+    fullName: function () { return this.firstName + " " + this.lastName }
+};
+
+console.log(person1.firstName); // --> John
+console.log(person1.fullName()); // --> John Doe
+person1.hello(); // --> Hi! I am John
+
+
+
+//THIS => keyword yang merujuk pada objek yang sedang digunakan
+const person = {
+    name: "Alice",
+    greet: function () {
+        console.log("Hello, my name is " + this.name);
+    }
+};
+person.greet(); // --> Hello, my name is Alice
+
+
+
+//CONSTRUCTOR FUNCTION => fungsi yang digunakan untuk membuat objek baru dengan properti dan metode yang sama
+function car(make, model, year, color) {
+    this.make = make,
+    this.model = model,
+    this.year = year,
+    this.color = color
+    this.honk = function () {console.log(`you drive the ${this.model}`) }
+}
+
+const car1 = new car("Toyota", "Camry", 2020, "red");
+const car2 = new car("Honda", "Civic", 2019, "blue");
+
+console.log(car1.make); // --> Toyota
+console.log(car1.model); // --> Camry
+console.log(car1.year); // --> 2020
+console.log(car1.color); // --> red
+console.log(car1.honk()); // --> you drive the Camry
+
+console.log(car2.model); // --> Civic
+console.log(car2.year); // --> 2019
+console.log(car2.color); // --> blue
+console.log(car2.make); // --> Honda
+console.log(car2.honk()); // --> you drive the Civic
+
+
+
+//CLASS => blueprint untuk membuat objek dengan properti dan metode yang sama
+class product {
+    constructor(name, price, category) {
+        this.name = name;
+        this.price = price;
+        this.category = category;
+    }
+
+    display() {
+        console.log(`Product: ${this.name}`);
+        console.log(`Price: $${this.price.toFixed(2)}`); //toFixed(2) untuk membulatkan harga ke 2 desimal => $1000.00
+        console.log(`Category: ${this.category}`);
+    }
+
+    calculateTotal(salestax) {
+        return this.price + (this.price * salestax);
+    }
+}
+const salestax = 0.5;
+const product1 = new product("Laptop", 1000, "Electronics");
+const product2 = new product("Shirt", 50, "Clothing");
+
+product1.display();
+// --> Product: Laptop
+// --> Price: $1000
+// --> Category: Electronics
+
+product2.display();
+// --> Product: Shirt
+// --> Price: $50
+// --> Category: Clothing
+
+console.log(`Total price with sales tax: $${product1.calculateTotal(salestax).toFixed(2)}`);
+// --> Total price with sales tax: $1500.00
+
+
+
+//static method => metode yang dapat dipanggil tanpa membuat objek dari kelas tersebut
+class user {
+    static userCount = 0;
+
+    constructor(username) {
+        this.username = username;
+        user.userCount++;
+    }
+
+    static getUserCount() {
+        console.log(`Total users: ${user.userCount}`);
+    }
+    sayHello() {
+        console.log(`Hello, my name is ${this.username}`);
+    }
+}
+
+const user1 = new user("Alice");
+const user2 = new user("Bob");
+const user3 = new user("Charlie");
+
+user1.sayHello(); // --> Hello, my name is Alice
+user2.sayHello(); // --> Hello, my name is Bob
+user3.sayHello(); // --> Hello, my name is Charlie
+user.getUserCount(); // --> Total users: 3
 
