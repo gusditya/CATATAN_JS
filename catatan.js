@@ -623,3 +623,122 @@ user2.sayHello(); // --> Hello, my name is Bob
 user3.sayHello(); // --> Hello, my name is Charlie
 user.getUserCount(); // --> Total users: 3
 
+
+
+//Inheritance => konsep dimana sebuah kelas dapat mewarisi properti dan metode dari kelas lain
+class animals {
+    alive = true;
+
+    eat() {
+        console.log(`This ${this.name} is eating.`);
+    }
+    sleep() {
+        console.log(`This ${this.name} is sleeping.`);
+    }
+}
+
+class dog extends animals {
+    name = "dog";
+    bark() {
+        console.log("Woof! Woof!");
+    }
+}
+class cat extends animals {
+    name = "cat";
+}
+class fish extends animals {
+    name = "fish";
+}
+
+const dog = new dog();
+const cat = new cat();
+const fish = new fish();
+
+dog.eat(); // --> This dog is eating.
+dog.sleep(); // --> This dog is sleeping.
+dog.bark(); // --> Woof! Woof!
+cat.eat(); // --> This cat is eating.
+cat.sleep(); // --> This cat is sleeping.
+fish.eat(); // --> This fish is eating.
+fish.sleep(); // --> This fish is sleeping.
+
+
+//SUPER => keyword yang digunakan untuk memanggil konstruktor atau metode dari kelas induk
+
+class animals {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    move(speed) {
+        console.log(`This ${this.name} is moving at ${speed}mph.`);
+    }
+}
+
+class Rabbit extends animals {
+    constructor(name, age, runSpeed) {
+        super(name, age);
+        this.runSpeed = runSpeed;
+    }
+
+    run() {
+        super.move(this.runSpeed);
+    }
+}
+class Fish extends animals {
+    constructor(name, age, swimSpeed) {
+        super(name, age);
+        this.swimSpeed = swimSpeed;
+    }
+
+    swim() {
+        super.move(this.swimSpeed);
+    }
+}
+class Hawk extends animals {
+    constructor(name, age, flySpeed) {
+        super(name, age);
+        this.flySpeed = flySpeed;
+    }
+
+    fly() {
+        super.move(this.flySpeed);
+    }
+}
+
+const rabbit = new Rabbit("Bunny", 2, 20);
+const fish = new Fish("Nemo", 1, 10);
+const hawk = new Hawk("Falcon", 5, 30);
+
+console.log(`${rabbit.name} is ${rabbit.age} years old and can run at ${rabbit.runSpeed} km/h`);
+// --> Bunny is 2 years old and can run at 20 km/h
+console.log(`${fish.name} is ${fish.age} years old and can swim at ${fish.swimSpeed} km/h`);
+// --> Nemo is 1 years old and can swim at 10 km/h
+console.log(`${hawk.name} is ${hawk.age} years old and can fly at ${hawk.flySpeed} km/h`);
+// --> Falcon is 5 years old and can fly at 30 km/h
+
+
+
+//getter => metode yang digunakan untuk mengambil nilai dari properti
+//setter => metode yang digunakan untuk mengubah nilai dari properti
+
+class rectangle {
+    constructor(width, height) {
+        this.width = width;
+        this.height = height;
+    }
+
+    set width(newWidth) {
+        if (newWidth > 0) {
+            this._width = newWidth;
+        }
+        else {
+            console.error("Width must be a positive number.");
+        }
+    }
+}
+
+const myRectangle = new rectangle(-5, 10);
+console.log(myRectangle.width); // --> -5
+console.log(myRectangle.height); // --> 10
