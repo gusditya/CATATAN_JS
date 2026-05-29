@@ -737,8 +737,80 @@ class rectangle {
             console.error("Width must be a positive number.");
         }
     }
+    set height(newHeight) {
+        if (newHeight > 0) {
+            this._height = newHeight;
+        }
+        else {
+            console.error("Height must be a positive number.");
+        }
+    }
+
+    get width() {
+        return this._width;
+    }
+    get height() {
+        return this._height;
+    }
 }
 
-const myRectangle = new rectangle(-5, 10);
-console.log(myRectangle.width); // --> -5
-console.log(myRectangle.height); // --> 10
+const myRectangle = new rectangle(3, 10);
+myRectangle.width = -5;
+myRectangle.height = -10;
+
+console.log(myRectangle.width);
+console.log(myRectangle.height);
+
+//------------------------------
+
+class person {
+    constructor(firstName, lastName, age) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+    }
+
+    set firstName(newFirstName) {
+        if(typeof newFirstName === "string" && newFirstName.length > 0) {
+            this._firstName = newFirstName;
+        }
+        else {
+            console.error("First name must be a non-empty string.");
+        }
+    }
+    set lastName(newLastName) {
+        if(typeof newLastName === "string" && newLastName.length > 0) {
+            this._lastName = newLastName;
+        }
+        else {
+            console.error("First name must be a non-empty string.");
+        }
+    }
+    set age(newAge) {
+        if(typeof newAge === "number" && newAge > 0) {
+            this._age = newAge;
+        }
+        else {
+            console.error("age must be a non-negative number.");
+        }
+    }
+
+    get firstName() {
+        return this._firstName;
+    }
+    get lastName() {
+        return this._lastName;
+    }
+    get fullName() {
+        return this._firstName + " " + this._lastName;
+    }
+    get age() {
+        return this._age;
+    }
+}
+
+const person1 = new person("John", "Doe", 30);
+console.log(person1.fullName); // --> John Doe
+console.log(person1.age); // --> 30
+console.log(person1.firstName); // --> John
+console.log(person1.lastName); // --> Doe

@@ -1,38 +1,51 @@
-class animals {
-
-    constructor(name, age) {
-        this.name = name;
+class person {
+    constructor(firstName, lastName, age) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.age = age;
     }
-}
 
-class Rabbit extends animals {
+    set firstName(newFirstName) {
+        if(typeof newFirstName === "string" && newFirstName.length > 0) {
+            this._firstName = newFirstName;
+        }
+        else {
+            console.error("First name must be a non-empty string.");
+        }
+    }
+    set lastName(newLastName) {
+        if(typeof newLastName === "string" && newLastName.length > 0) {
+            this._lastName = newLastName;
+        }
+        else {
+            console.error("First name must be a non-empty string.");
+        }
+    }
+    set age(newAge) {
+        if(typeof newAge === "number" && newAge > 0) {
+            this._age = newAge;
+        }
+        else {
+            console.error("age must be a non-negative number.");
+        }
+    }
 
-    constructor(name, age, runSpeed) {
-        super(name, age);
-        this.runSpeed = runSpeed;
+    get firstName() {
+        return this._firstName;
+    }
+    get lastName() {
+        return this._lastName;
+    }
+    get fullName() {
+        return this._firstName + " " + this._lastName;
+    }
+    get age() {
+        return this._age;
     }
 }
-class Fish extends animals {
-    constructor(name, age, swimSpeed) {
-        super(name, age);
-        this.swimSpeed = swimSpeed;
-    }
-}
-class Hawk extends animals {
-    constructor(name, age, flySpeed) {
-        super(name, age);
-        this.flySpeed = flySpeed;
-    }
-}
 
-const rabbit = new Rabbit("Bunny", 2, 20);
-const fish = new Fish("Nemo", 1, 10);
-const hawk = new Hawk("Falcon", 5, 30);
-
-console.log(`${rabbit.name} is ${rabbit.age} years old and can run at ${rabbit.runSpeed} km/h`);
-// --> Bunny is 2 years old and can run at 20 km/h
-console.log(`${fish.name} is ${fish.age} years old and can swim at ${fish.swimSpeed} km/h`);
-// --> Nemo is 1 years old and can swim at 10 km/h
-console.log(`${hawk.name} is ${hawk.age} years old and can fly at ${hawk.flySpeed} km/h`);
-// --> Falcon is 5 years old and can fly at 30 km/h
+const person1 = new person("John", "Doe", 30);
+console.log(person1.fullName); // --> John Doe
+console.log(person1.age); // --> 30
+console.log(person1.firstName); // --> John
+console.log(person1.lastName); // --> Doe
