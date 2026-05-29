@@ -814,3 +814,93 @@ console.log(person1.fullName); // --> John Doe
 console.log(person1.age); // --> 30
 console.log(person1.firstName); // --> John
 console.log(person1.lastName); // --> Doe
+
+
+
+// Destructuring => cara untuk mengambil nilai dari array atau objek dan menyimpannya dalam variabel yang terpisah
+//example 1
+let a = 1;
+let b = 2;
+
+[a, b] = [b, a];
+console.log(a); // --> 2
+console.log(b); // --> 1
+
+//example 2
+//swap 2 element dalam array
+const colors = ["red", "green", "blue", "yellow", "white"];
+
+[colors[0], colors[2]] = [colors[2], colors[0]];
+console.log(colors); // --> ["blue", "green", "red", "yellow", "white"]
+
+//example 3
+const colors = ["red", "green", "blue", "yellow", "white"];
+const [firstColor, secondColor, thirdColor, ...otherColors] = colors;
+
+console.log(firstColor); // --> red
+console.log(secondColor); // --> green
+console.log(thirdColor); // --> blue
+console.log(otherColors); // --> ["yellow", "white"]
+
+//example 4
+const person = {
+    name: "John",
+    age: 30,
+    city: "New York",
+    job: "Developer"
+};
+
+const person1 = {
+    name: "Jane",
+    age: 25,
+    city: "Los Angeles",
+};
+
+const { name, age, city, job="Designer" } = person1;
+console.log(name); // --> Jane
+console.log(age); // --> 25
+console.log(city); // --> Los Angeles
+console.log(job); // --> Designer
+
+//example 5
+function displayPerson({ name, age, city, job="Designer" }) {
+    console.log(`Name: ${name}`);
+    console.log(`Age: ${age}`);
+    console.log(`City: ${city}`);
+    console.log(`Job: ${job}`);
+}
+
+const person = {
+    name: "John",
+    age: 30,
+    city: "New York",
+    job: "Developer"
+};
+
+const person1 = {
+    name: "Jane",
+    age: 25,
+    city: "Los Angeles",
+};
+
+displayPerson(person); // --> Name: John, Age: 30, City: New York, Job: Developer
+displayPerson(person1); // --> Name: Jane, Age: 25, City: Los Angeles, Job: Designer
+
+
+
+//Nested Objects => objek yang memiliki objek lain sebagai propertinya
+const person = {
+    name: "John",
+    age: 30,
+    hobbies: ["reading", "traveling", "cooking"],
+    address: {
+        street: "123 Main St",
+        city: "New York",
+        country: "USA"
+    }
+};
+
+console.log(person.name); // --> John
+console.log(person.age); // --> 30
+console.log(person.hobbies[2]); // --> cooking
+console.log(person.address.city); // --> New York
